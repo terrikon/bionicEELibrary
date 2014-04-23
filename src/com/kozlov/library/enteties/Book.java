@@ -4,8 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 
 @Entity
+@NamedQueries({
+//@NamedQuery(name="Product.countAll", query="SELECT count(p) FROM Product p"),		
+@NamedQuery(name="Book.findAll", query="SELECT b FROM Book b")})
 public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

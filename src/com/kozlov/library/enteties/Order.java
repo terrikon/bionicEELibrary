@@ -26,7 +26,7 @@ public class Order {
 	@JoinColumn(name = "userId")
 	private User user;
 	@ManyToOne
-	@JoinColumn(name = "statusId")
+	@JoinColumn(name = "orderStatusId")
 	private OrderStatus orderStatus;
 	@Temporal(value = TemporalType.DATE)
 	private Date date;
@@ -43,7 +43,7 @@ public class Order {
 		return user;
 	}
 
-	public OrderStatus getStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
@@ -63,7 +63,7 @@ public class Order {
 		this.user = user;
 	}
 
-	public void setStatus(OrderStatus orderStatus) {
+	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
