@@ -5,17 +5,26 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
+
+<f:view locale="#{userLanguage.locale}" />
+
 <h:head></h:head>
 <h:body>
 	<h:outputText value="#{texts.helloWorld}" />
-	<h:form>
-		<h:panelGrid columns="2"> 
-         Language : 
-         <h:selectOneMenu value="#{userLanguage.locale}" onchange="submit()"
-				valueChangeListener="#{userLanguage.localeChanged}">
-				<f:selectItems value="#{userLanguage.countries}" />
-			</h:selectOneMenu>
+	<h:form id="langForm">
+		<h:panelGrid columns="2">
+         Language :
+         <p:selectOneMenu value="#{userLanguage.language}"
+				id="selectone">
+
+				<f:selectItems value="#{userLanguage.countries}" var="country"
+					itemLabel="#{country}" />
+				<p:ajax process=":langForm:selectone" update="@all" />
+			</p:selectOneMenu>
 		</h:panelGrid>
+
 	</h:form>
+
+
 </h:body>
 </html>
