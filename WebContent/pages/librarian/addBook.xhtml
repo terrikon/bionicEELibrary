@@ -9,6 +9,7 @@
 <h:body>
 	<ui:composition template="commonLibrarian.xhtml">
 		<ui:define name="content">
+			<h:messages />
 			<h2></h2>
 			<h:form>
 				<p:panel header="Add New Book">
@@ -35,7 +36,7 @@
 							style="font-weight:bold" />
 						<p:inputText id="year" value="#{bookBean.currBook.year}" required="true"
 							validatorMessage="Entered year is incorrect">
-							<f:validateLongRange maximum="2015"/>
+							<f:validateLongRange minimum="0" maximum="#{bookBean.currYear}"/>
 							
 							
 						</p:inputText>
@@ -52,9 +53,8 @@
 
 					</h:panelGrid>
 
-
 					<p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"
-					action="#{bookBean.addBook}"/> 
+					action="#{bookBean.addBook()}"/> 
 				</p:panel>
 			</h:form>
 		</ui:define>
