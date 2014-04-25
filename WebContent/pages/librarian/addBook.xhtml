@@ -2,15 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head></h:head>
 <h:body>
 	<ui:composition template="commonLibrarian.xhtml">
 		<ui:define name="content">
-			<h2>This is page1 content</h2>
+			<h2></h2>
+			<h:form>
+				<p:panel header="Add New Book">
+
+					<h:panelGrid id="grid" columns="4" cellpadding="5">
+						<h:outputLabel for="title" value="#{texts.Title}:"
+							style="font-weight:bold" />
+						<p:inputText id="title" value="#{bookBean.currBook.title}" required="true" label="Title">
+	
+						</p:inputText>
+						<p:message for="title" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="author" value="#{texts.Author}:"
+							style="font-weight:bold" />
+						<p:inputText id="author" value="#{bookBean.currBook.author}" label="Author" required="true"
+							validatorMessage="only a-z,A-Z,а-я,А-Я allowed">
+							<f:validateRegex pattern="[a-zA-Zа-яА-Я.]+" />
+						</p:inputText>
+						<p:message for="author" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="year" value="#{texts.Year}:"
+							style="font-weight:bold" />
+						<p:inputText id="year" value="#{bookBean.currBook.year}" required="true"
+							validatorMessage="Entered year is incorrect">
+							<f:validateLongRange maximum="2015"/>
+							
+							
+						</p:inputText>
+						<p:message for="year" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="amount" value="#{texts.Amount}:"
+							style="font-weight:bold" />
+						<p:inputText id="amount" value="#{bookBean.currBook.available}" label="Amount" required="true">
+							<f:validateDoubleRange minimum="1" maximum="100" />
+						</p:inputText>
+						<p:message for="amount" />
+						<h:outputText value="" />
+
+					</h:panelGrid>
+
+
+					<p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"
+					action="#{bookBean.addBook}"/> 
+				</p:panel>
+			</h:form>
 		</ui:define>
 	</ui:composition>
-	
+
 </h:body>
 </html>

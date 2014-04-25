@@ -6,8 +6,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <f:loadBundle basename="com.kozlov.library.resources.texts" var="msg" />
+<f:view locale="#{userLanguage.locale}" />
 <h:head>
-<!-- 	<h:outputStylesheet name="common-style.css" library="css" /> -->
+	<!-- 	<h:outputStylesheet name="common-style.css" library="css" /> -->
 </h:head>
 
 <h:body>
@@ -31,13 +32,26 @@
 
 		<div id="content">
 			<ui:insert name="content">
-<!-- 				<ui:include src="/template/common/commonContent.xhtml" /> -->
+				<!-- 				<ui:include src="/template/common/commonContent.xhtml" /> -->
 			</ui:insert>
 		</div>
 
 		<div id="footer">
 			<ui:insert name="footer">
-<!-- 				<ui:include src="/template/common/commonFooter.xhtml" /> -->
+				<h:form id="langForm">
+					<h:panelGrid columns="2">
+         #{texts.Language}:
+         <p:selectOneMenu value="#{userLanguage.language}"
+							id="selectone">
+
+							<f:selectItems value="#{userLanguage.countries}" var="country"
+								itemLabel="#{country}" />
+							<p:ajax process=":langForm:selectone" update="@all" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+				</h:form>
+				<!-- 				<ui:include src="/template/common/commonFooter.xhtml" /> -->
 			</ui:insert>
 		</div>
 
