@@ -6,6 +6,10 @@
 
 <h:head></h:head> 
 <body> 
-
+<ui:composition template="commonGuest.xhtml">
+		<ui:define name="content">
+			<h:outputText value="#{userBean.currUser.name}" />
+		</ui:define>
+	</ui:composition>
 </body> 
 </html>
