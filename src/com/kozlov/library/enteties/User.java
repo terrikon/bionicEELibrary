@@ -6,8 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.login=:login"),		
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u")})
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

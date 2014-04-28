@@ -1,11 +1,10 @@
 package com.kozlov.library.beans;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.New;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,7 +19,7 @@ public class BookBean {
 	private BookDao bookDao;
 
 	@PostConstruct
-	private void init(){
+	private void init() {
 		currBook = new Book();
 	}
 
@@ -35,9 +34,9 @@ public class BookBean {
 	public void addBook() {
 		bookDao.create(currBook);
 	}
-	
-	public Integer getCurrYear(){
+
+	public Integer getCurrYear() {
 		return Calendar.getInstance().get(Calendar.YEAR);
 	}
-	
+
 }

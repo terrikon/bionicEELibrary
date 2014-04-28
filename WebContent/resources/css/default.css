@@ -1,0 +1,13 @@
+.ui-widget {
+	font-size: 14px !important;
+}
+
+#mainMenu{
+	width: 100% !important;
+}
+
+#loginPanel {
+	width:30% !importatnt;
+	float:right !important;
+	margin: 0 auto !important;
+}
