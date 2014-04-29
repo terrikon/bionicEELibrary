@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>BionicEELibrary</display-name>
 	<welcome-file-list>
-		<welcome-file>/faces/pages/guest/index.xhtml</welcome-file>
+		<welcome-file>/faces/pages/guest/indexGuest.xhtml</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
@@ -20,6 +20,8 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
+	
+	
 	<security-constraint>
 		<display-name>Web Security</display-name>
 		<web-resource-collection>
@@ -30,6 +32,7 @@
 			<role-name>admin</role-name>
 			<role-name>librarian</role-name>
 			<role-name>reader</role-name>
+			<role-name>guest</role-name>
 		</auth-constraint>
 	</security-constraint>
 	<security-constraint>
@@ -66,8 +69,8 @@
 		<auth-method>FORM</auth-method>
 		<realm-name>libAuth</realm-name>
 		<form-login-config>
-			<form-login-page>/pages/guest/index.xhtml</form-login-page>
-			<form-error-page>/pages/guest/index.xhtml</form-error-page>
+			<form-login-page>/faces/pages/guest/indexGuest.xhtml</form-login-page>
+			<form-error-page>/faces/pages/guest/test.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-role>
@@ -78,5 +81,8 @@
 	</security-role>
 	<security-role>
 		<role-name>librarian</role-name>
+	</security-role>
+	<security-role>
+		<role-name>guest</role-name>
 	</security-role>
 </web-app>

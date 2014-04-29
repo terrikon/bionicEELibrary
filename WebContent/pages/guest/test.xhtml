@@ -10,6 +10,11 @@
 
 <h:head></h:head>
 <h:body>
+<form method="post" action="j_security_check">
+		Login: <input type="text" name="j_username" /> <br/>
+		Password: <input type="password" name="j_password" /><br/>
+		<input type="submit" value="Go!!!" /> 
+	</form>
 	<h:outputText value="#{texts.helloWorld}" />
 	<h:form id="langForm">
 		<h:panelGrid columns="2">

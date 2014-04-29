@@ -15,6 +15,7 @@ public class UserDao extends GeneralDao<User, Integer> {
 	public User find(String login) {
 		TypedQuery<User> query = em.createNamedQuery("User.findByLogin",
 				User.class);
+		query.setParameter("login",login);
 		User result = query.getSingleResult();
 		return result;
 	}

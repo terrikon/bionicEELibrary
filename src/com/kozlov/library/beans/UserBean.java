@@ -35,14 +35,18 @@ public class UserBean implements Serializable {
 		this.currUser = currUser;
 	}
 
-	public String login(String login, String password) throws IOException {
+	public String login() throws IOException {
 		try {
-			getRequest().login(login, password);
-			currUser = userDao.find(login);
+			getRequest().login(currUser.getLogin(), currUser.getPass());
+			currUser = userDao.find(currUser.getLogin());
 		} catch (ServletException e) {
 			return null;
 		}
-		return "addBook";
+		if (currUser.getUserType().getType().equalsIgnoreCase("librarian")){
+		return "/faces/pages/librarian/addBook";
+		}else {
+			return null;
+		}
 	}
 
 	public String logout() throws ServletException {
@@ -51,7 +55,7 @@ public class UserBean implements Serializable {
 				.invalidateSession();
 		if (isAuthenticated())
 			getRequest().logout();
-		return "logout";
+		return "/faces/pages/guest/indexGuest";
 	}
 
 	public boolean isAuthenticated() {

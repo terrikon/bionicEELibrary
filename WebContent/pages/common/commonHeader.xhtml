@@ -9,10 +9,9 @@
 	<h:outputStylesheet name="default.css" library="css" />
 </h:head>
 <body>
-	<div id="mainMenu">
+	<div id="mainMenu" style="width:50%">
 		<p:tabMenu activeIndex="0">
-			<p:menuitem value="Overview" url="/ui/tabMenu.jsf"
-				icon="ui-icon-star" />
+			<p:menuitem value="Catalog" url="/ui/tabMenu.jsf" icon="ui-icon-star" />
 			<p:menuitem value="Demos" url="/ui/tabMenuDemos.jsf"
 				icon="ui-icon-search" />
 			<p:menuitem value="Documentation" url="/ui/tabMenuDocumentation.jsf"
@@ -21,31 +20,18 @@
 				icon="ui-icon-wrench" />
 			<p:menuitem value="Social" url="/ui/tabMenuSocial.jsf"
 				icon="ui-icon-person" />
-
-			<div id="loginPanel">
-				<p:menuitem>
-
-					<p:panelGrid columns="3">
-						<h:form>
-							<h:outputLabel for="login" value="#{texts.Login}: "
-								style="font-weight:bold" />
-							<p:inputText name="j_username" id="login"
-								value="#{userBean.currUser.login}" label="Login" />
-
-							<h:outputLabel for="password" value="#{texts.Password}: "
-								style="font-weight:bold" />
-							<p:inputText name="j_password" type="password" id="password"
-								value="#{userBean.currUser.pass}" label="Password" />
-
-							<p:commandButton value="Sigh in" ajax="false"
-								validateClient="true"
-								style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
-								action="j_security_check" />
-						</h:form>
-
-					</p:panelGrid>
-				</p:menuitem>
-								<p:menuitem>
+	
+			<div id="logOutPanel" align="right">
+				Hello, #{userBean.currUser.login}
+				
+				
+				<h:form>
+					<p:commandButton value="Sigh out" ajax="false"
+						style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
+						action="#{userBean.logout()}" />
+				</h:form>
+				
+				
 					<h:form id="langForm">
 						<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
 
@@ -54,8 +40,8 @@
 							<p:ajax process=":langForm:selectone" update="@all" />
 						</p:selectOneMenu>
 					</h:form>
-				</p:menuitem>
 				
+
 
 
 

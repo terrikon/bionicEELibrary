@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-   	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -9,7 +9,9 @@
 <f:view locale="#{userLanguage.locale}" />
 <h:head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<!-- 	<h:outputStylesheet name="common-style.css" library="css" /> -->
+
+	<h:outputStylesheet name="default.css" library="css" />
+
 </h:head>
 
 <h:body>
@@ -18,7 +20,51 @@
 
 		<div id="header">
 			<ui:insert name="header">
-				<ui:include src="/pages/common/commonHeader.xhtml" />
+				<div id="mainMenu">
+					<p:tabMenu activeIndex="0">
+						<p:menuitem value="Catalog" url="/ui/tabMenu.jsf"
+							icon="ui-icon-star" />
+						<p:menuitem value="Demos" url="/ui/tabMenuDemos.jsf"
+							icon="ui-icon-search" />
+						<p:menuitem value="Documentation"
+							url="/ui/tabMenuDocumentation.jsf" icon="ui-icon-document" />
+						<p:menuitem value="Support" url="/ui/tabMenuSupport.jsf"
+							icon="ui-icon-wrench" />
+						<p:menuitem value="Social" url="/ui/tabMenuSocial.jsf"
+							icon="ui-icon-person" />
+						<div id="loginPanel">
+							<p:menuitem>
+								<p:panelGrid columns="3">
+									<h:form>
+										<h:outputLabel for="login" value="#{texts.Login}: "
+											style="font-weight:bold" />
+										<p:inputText name="j_username" id="login"
+											value="#{userBean.currUser.login}" label="Login" />
+										<h:outputLabel for="password" value="#{texts.Password}: "
+											style="font-weight:bold" />
+										<p:inputText name="j_password" type="password" id="password"
+											value="#{userBean.currUser.pass}" label="Password" />
+										<p:commandButton value="Sigh in" ajax="false"
+											style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
+											action="#{userBean.login}" />
+									</h:form>
+								</p:panelGrid>
+							</p:menuitem>
+							<p:menuitem>
+								<h:form id="langForm">
+									<p:selectOneMenu value="#{userLanguage.language}"
+										id="selectone">
+										<f:selectItems value="#{userLanguage.countries}" var="country"
+											itemLabel="#{country}" />
+										<p:ajax process=":langForm:selectone" update="@all" />
+									</p:selectOneMenu>
+								</h:form>
+							</p:menuitem>
+						</div>
+					</p:tabMenu>
+					<p:graphicImage value="/resources/images/books.jpeg" alt="left"
+						height="100" width="425" />
+				</div>
 			</ui:insert>
 		</div>
 
