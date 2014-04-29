@@ -6,19 +6,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
 
 <h:head></h:head> 
-<body> 
-<h:form id="langForm">
-					<h:panelGrid columns="2">
-         #{texts.Language}:
-         <p:selectOneMenu value="#{userLanguage.language}"
-							id="selectone">
+<body>
+<br/>
+<br/>
+<hr></hr>
+<p align="right" style="font-size:10">Project Library <br/> Crated by Kozlov Dmytro</p>
 
-							<f:selectItems value="#{userLanguage.countries}" var="country"
-								itemLabel="#{country}" />
-							<p:ajax process=":langForm:selectone" update="@all" />
-						</p:selectOneMenu>
-					</h:panelGrid>
-
-				</h:form>
 </body> 
 </html>

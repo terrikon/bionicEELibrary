@@ -5,12 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>BionicEELibrary</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>/faces/pages/guest/index.xhtml</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
@@ -25,4 +20,63 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
+	<security-constraint>
+		<display-name>Web Security</display-name>
+		<web-resource-collection>
+			<web-resource-name>rich</web-resource-name>
+			<url-pattern>/pages/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+			<role-name>librarian</role-name>
+			<role-name>reader</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Admin Web Security</display-name>
+		<web-resource-collection>
+			<web-resource-name>rich_admin</web-resource-name>
+			<url-pattern>/pages/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Librarian Web Security</display-name>
+		<web-resource-collection>
+			<web-resource-name>rich_librarian</web-resource-name>
+			<url-pattern>/pages/librarian/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>librarian</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Reader Web Security</display-name>
+		<web-resource-collection>
+			<web-resource-name>rich_reader</web-resource-name>
+			<url-pattern>/pages/reader/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>reader</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>libAuth</realm-name>
+		<form-login-config>
+			<form-login-page>/pages/guest/index.xhtml</form-login-page>
+			<form-error-page>/pages/guest/index.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-role>
+		<role-name>reader</role-name>
+	</security-role>
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+	<security-role>
+		<role-name>librarian</role-name>
+	</security-role>
 </web-app>

@@ -1,15 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head></h:head> 
-<body> 
-<ui:composition template="commonGuest.xhtml">
+<h:head></h:head>
+<body>
+	<ui:composition template="commonGuest.xhtml">
 		<ui:define name="content">
-			<h:outputText value="#{userBean.currUser.name}" />
+			<h:form id="form">
+
+				<p:dataTable var="book" value="#{bookTableBean.books}"
+					rowKey="#{book.bookId}" paginator="true" paginatorPosition="bottom"
+					rows="10" widgetVar="booksTable"
+					selection="#{bookTableBean.selectedBook}" selectionMode="single"
+					filteredValue="#{bookTableBean.filteredBooks}" id="booksTable"
+					emptyMessage="No books found with given criteria">
+
+					<p:ajax event="rowSelect" update=":form:display"
+						oncomplete="bookDialog.show()" />
+
+					<f:facet name="header">
+						<p:outputPanel>
+							<div align="right">
+								<h:outputText value="Search a book:" />
+								<p:inputText id="globalFilter" onkeyup="booksTable.filter()"
+									style="width:150px" />
+							</div>
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="#{texts.Title}" sortBy="title"
+						filterBy="title" id="title">  
+            #{book.title}  
+        </p:column>
+
+					<p:column headerText="#{texts.Author}" sortBy="author"
+						filterBy="author" id="author">  
+            #{book.author}  
+        </p:column>
+
+					<p:column headerText="#{texts.Year}" sortBy="year" filterBy="year"
+						id="year">  
+            #{book.year}  
+        </p:column>
+
+					<p:column headerText="#{texts.Amount}" sortBy="available"
+						filterBy="available" id="color">  
+            #{book.available}  
+        </p:column>
+
+				</p:dataTable>
+
+				<p:dialog header="Book Detail" widgetVar="bookDialog"
+					resizable="false" width="200" showEffect="explode"
+					hideEffect="explode">
+
+					<h:panelGrid id="display" columns="2" cellpadding="4">
+
+
+
+						<h:outputText value="#{texts.Title}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.title}"
+							id="title" />
+
+						<h:outputText value="#{texts.Author}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.author}"
+							id="author" />
+
+						<h:outputText value="#{texts.Year}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.year}" id="year" />
+
+						<h:outputText value="#{texts.Amount}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.available}"
+							id="available" />
+					</h:panelGrid>
+				</p:dialog>
+
+			</h:form>
 		</ui:define>
 	</ui:composition>
-</body> 
+</body>
 </html>
