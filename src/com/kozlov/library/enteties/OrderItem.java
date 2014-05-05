@@ -6,8 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="OrderItem.countBook", query="SELECT count(i) FROM OrderItem i "),
+//@NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b") 
+})
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

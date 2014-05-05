@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#guest#indexGuest.xhtml"
+  PATH="/pages/guest/indexGuest.xhtml" SHAPE="48,136,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#guest#indexGuest.xhtml:0" NAME="item"
+   PATH="/pages/guest/indexGuest.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="indexReader::#pages#reader#indexReader.xhtml" NAME="output"
+    PATH="/pages/reader/indexReader.xhtml"
+    TARGET="rules:#pages#reader#indexReader.xhtml" TITLE="indexReader" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#reader#indexReader.xhtml"
+  PATH="/pages/reader/indexReader.xhtml" SHAPE="296,48,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

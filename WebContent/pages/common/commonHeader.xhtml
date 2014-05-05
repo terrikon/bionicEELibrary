@@ -9,7 +9,8 @@
 	<h:outputStylesheet name="default.css" library="css" />
 </h:head>
 <body>
-	<div id="mainMenu" style="width:50%">
+	
+	<div id="mainMenu">
 		<p:tabMenu activeIndex="0">
 			<p:menuitem value="Catalog" url="/ui/tabMenu.jsf" icon="ui-icon-star" />
 			<p:menuitem value="Demos" url="/ui/tabMenuDemos.jsf"
@@ -20,36 +21,32 @@
 				icon="ui-icon-wrench" />
 			<p:menuitem value="Social" url="/ui/tabMenuSocial.jsf"
 				icon="ui-icon-person" />
-	
-			<div id="logOutPanel" align="right">
-				Hello, #{userBean.currUser.login}
-				
-				
+			<p:menuitem>
+					Hello, #{userBean.currUser.login}
+					</p:menuitem>
+			<p:menuitem>
 				<h:form>
 					<p:commandButton value="Sigh out" ajax="false"
 						style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
 						action="#{userBean.logout()}" />
 				</h:form>
-				
-				
-					<h:form id="langForm">
-						<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
+			</p:menuitem>
+			<p:menuitem>
+				<h:form id="langForm">
+					<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
 
-							<f:selectItems value="#{userLanguage.countries}" var="country"
-								itemLabel="#{country}" />
-							<p:ajax process=":langForm:selectone" update="@all" />
-						</p:selectOneMenu>
-					</h:form>
-				
+						<f:selectItems value="#{userLanguage.countries}" var="country"
+							itemLabel="#{country}" />
+						<p:ajax process=":langForm:selectone" update="@all" />
+					</p:selectOneMenu>
+				</h:form>
 
-
-
-
-			</div>
+			</p:menuitem>
 		</p:tabMenu>
-		<p:graphicImage value="/resources/images/books.jpeg" alt="left"
-			height="100" width="425" />
 	</div>
+	<p:graphicImage value="/resources/images/books.jpeg" alt="left"
+		height="100" width="425" />
+
 
 </body>
 </html>
