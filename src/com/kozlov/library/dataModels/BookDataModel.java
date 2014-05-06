@@ -8,6 +8,7 @@ import javax.faces.model.ListDataModel;
 import org.primefaces.model.SelectableDataModel;
 
 import com.kozlov.library.enteties.Book;
+import com.kozlov.library.enteties.OrderItem;
 
 public class BookDataModel extends ListDataModel<Book> implements SelectableDataModel<Book>, Serializable {    
   
@@ -20,8 +21,7 @@ public class BookDataModel extends ListDataModel<Book> implements SelectableData
       
     @Override  
     public Book getRowData(String rowKey) {  
-        //In a real app, a more efficient way like a query by rowKey should be implemented to deal with huge data  
-          
+                 
         List<Book> books = (List<Book>) getWrappedData();  
           
         for(Book book : books) {  
@@ -35,7 +35,8 @@ public class BookDataModel extends ListDataModel<Book> implements SelectableData
     @Override  
     public Object getRowKey(Book book) {  
         return book.getBookId();  
-    }  
+    }
+    
 }   
 
 

@@ -19,6 +19,7 @@
 		<div id="header">
 			<ui:insert name="header">
 				<ui:include src="/pages/common/commonHeader.xhtml" />
+				<ui:param name="index" value="#{currIndex}" />
 			</ui:insert>
 		</div>
 		<p:growl id="growl" showDetail="true" sticky="true" />

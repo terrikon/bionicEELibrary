@@ -11,10 +11,11 @@
 		<ui:define name="content">
 			<h:form id="form">
 
-				<p:dataTable var="book" value="#{bookTableBean.books}"
-					rowKey="#{book.bookId}" paginator="true" paginatorPosition="bottom"
-					rows="10" widgetVar="booksTable"
-					selection="#{bookTableBean.selectedBook}" selectionMode="single"
+				<p:dataTable styleClass="borderless" var="book"
+					value="#{bookTableBean.books}" rowKey="#{book.bookId}"
+					paginator="true" paginatorPosition="bottom" rows="10"
+					widgetVar="booksTable" selection="#{bookTableBean.selectedBook}"
+					selectionMode="single"
 					filteredValue="#{bookTableBean.filteredBooks}" id="booksTable"
 					emptyMessage="No books found with given criteria">
 
@@ -31,8 +32,7 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="#{texts.Title}" sortBy="title"
-						filterBy="title" id="title">  
+					<p:column headerText="#{texts.Title}" sortBy="title" filterBy="title" id="title">  
             #{book.title}  
         </p:column>
 
@@ -45,12 +45,6 @@
 						id="year">  
             #{book.year}  
         </p:column>
-
-					<p:column headerText="#{texts.Amount}" sortBy="available"
-						filterBy="available" id="color">  
-            #{book.available}  
-        </p:column>
-
 				</p:dataTable>
 
 				<p:dialog header="Book Detail" widgetVar="bookDialog"
@@ -69,9 +63,7 @@
 						<h:outputText value="#{texts.Year}:" />
 						<h:outputText value="#{bookTableBean.selectedBook.year}" id="year" />
 
-						<h:outputText value="#{texts.Amount}:" />
-						<h:outputText value="#{bookTableBean.selectedBook.available}"
-							id="available" />
+
 					</h:panelGrid>
 				</p:dialog>
 

@@ -12,27 +12,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "orders")
+@NamedQueries({
+	@NamedQuery(name="Order.findByLogin", query="SELECT o FROM Order o WHERE o.user.login=:login"),		
+	@NamedQuery(name="Order.findAll", query="SELECT o FROM Order o")})
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
 	@ManyToOne
 	@JoinColumn(name = "orderStatusId")
 	private OrderStatus orderStatus;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date date;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="orderId")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "orderId", referencedColumnName = "orderId")
 	private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 
 	public Integer getOrderId() {
@@ -75,5 +82,4 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-	
 }

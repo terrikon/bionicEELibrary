@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="commonReader.xhtml">
+		<ui:param name="index" value="1" />
+		<ui:define name="content">
+			<h:form id="form">
+				<div style="width: 100%; height: 100%">
+					<div id="leftPart" style="width: 49%; height: auto; float: left">
+
+						<p:dataTable styleClass="borderless" var="orderItem"
+							value="#{userBean.orderItems}" rowKey="#{orderItem.book.bookId}"
+							widgetVar="booksTable" selection="#{bookTableBean.selectedBook}"
+							selectionMode="single"
+							filteredValue="#{bookTableBean.filteredBooks}" id="booksTable"
+							emptyMessage="Empty">
+
+							<p:ajax event="rowSelect" update=":form:display"
+								oncomplete="bookDialog.show()" />
+
+							<f:facet name="header">
+								<p:outputPanel>
+									<div align="right">
+										<h:outputText value="Search a book in order:" />
+										<p:inputText id="globalFilter" onkeyup="booksTable.filter()"
+											style="width:150px" />
+									</div>
+								</p:outputPanel>
+							</f:facet>
+
+							<p:column headerText="#{texts.YourOrder}" sortBy="title"
+								id="title" style="width:25%;">
+						
+            			#{orderItem.book.title}
+					</p:column>
+							<p:column>
+								<p:commandButton value="remove" ajax="false"
+									style="width: auto; height: 27px; background: #008bcb;border-color: #017eb8; color:#fff "
+									action="#{userBean.delBookFromOrder}">
+									<f:setPropertyActionListener target="#{userBean.currOrderItem}"
+										value="#{orderItem}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+						<br /> <br />
+						<p:commandButton value="Submit an order"
+							disabled="#{userBean.disabled}" ajax="false"
+							style="width: auto; height: auto; background: #008bcb;border-color: #017eb8; color:#fff "
+							action="#{userBean.submitOrder}">
+
+						</p:commandButton>
+
+					</div>
+					<div id="rightPart" 
+						style="width: 49%;background:#F9F9F9; height: 100%; float: right; position: relative;">
+						<p:dataTable styleClass="borderless" var="order"
+							value="#{orderTableBean.orders}" rowKey="#{order}"
+							widgetVar="booksTable" selection="#{bookTableBean.selectedBook}"
+							selectionMode="single"
+							 id="ordersTable"
+							emptyMessage="Empty">
+
+							<p:ajax event="rowSelect" update=":form:display"
+								oncomplete="bookDialog.show()" />
+
+							<f:facet name="header">
+								<p:outputPanel>
+									<div align="right">
+										<h:outputText value="Orders history" />
+
+									</div>
+								</p:outputPanel>
+							</f:facet>
+
+							<p:column headerText="#{texts.OrderDate}" sortBy="date"
+								id="date" >						
+            			#{order.date}
+					</p:column>
+							<p:column headerText="#{texts.OrderStatus}" sortBy="title"
+								id="status">
+						#{order.orderStatus.status}
+							</p:column>
+						</p:dataTable>
+
+					</div>
+				</div>
+
+
+
+				<p:dialog header="Book Detail" widgetVar="bookDialog"
+					resizable="false" width="300" showEffect="explode"
+					hideEffect="explode">
+
+					<h:panelGrid id="display" columns="2" cellpadding="4">
+						<h:outputText value="#{texts.Title}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.title}"
+							id="title" />
+
+						<h:outputText value="#{texts.Author}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.author}"
+							id="author" />
+
+						<h:outputText value="#{texts.Year}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.year}" id="year" />
+
+						<h:outputText value="#{texts.Amount}:" />
+						<h:outputText value="#{bookTableBean.selectedBook.available}"
+							id="available" />
+					</h:panelGrid>
+				</p:dialog>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -8,6 +8,7 @@
 <h:head></h:head>
 <body>
 	<ui:composition template="commonReader.xhtml">
+		<ui:param name="index" value="0" />
 		<ui:define name="content">
 			<h:form id="form">
 				<p:dataTable styleClass="borderless" var="book"
@@ -31,7 +32,8 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="#{texts.Title}" sortBy="title" id="title">  
+					<p:column headerText="#{texts.Title}" sortBy="title"
+						filterBy="title" id="title">  
             			#{book.title}  
         			</p:column>
 
@@ -45,16 +47,14 @@
             			#{book.year}  
                     </p:column>
 
-					<p:column headerText="#{texts.Amount}" sortBy="available"
-						id="color">  
-            			#{book.available}  
-                    </p:column>
+
 					<p:column>
-						<p:commandButton value="order" ajax="false"
+						<p:commandButton value="order" disabled="#{!book.canOrder}"
+							ajax="false"
 							style="width: auto; height: 27px; background: #008bcb;border-color: #017eb8; color:#fff "
-							action="#{userBean.addBookToOrder}" >
-						<f:setPropertyActionListener target="#{userBean.bookForOrder}"
-							value="#{book}" />
+							action="#{userBean.addBookToOrder}">
+							<f:setPropertyActionListener target="#{userBean.bookForOrder}"
+								value="#{book}" />
 						</p:commandButton>
 					</p:column>
 
@@ -75,10 +75,14 @@
 
 						<h:outputText value="#{texts.Year}:" />
 						<h:outputText value="#{bookTableBean.selectedBook.year}" id="year" />
+						<p:commandButton value="order" ajax="false"
+							
+							style="width: auto; height: 27px; background: #008bcb;border-color: #017eb8; color:#fff "
+							action="#{userBean.addBookToOrder}">
+							<f:setPropertyActionListener target="#{userBean.bookForOrder}"
+								value="#{bookTableBean.selectedBook}" />
+						</p:commandButton>
 
-						<h:outputText value="#{texts.Amount}:" />
-						<h:outputText value="#{bookTableBean.selectedBook.available}"
-							id="available" />
 					</h:panelGrid>
 				</p:dialog>
 

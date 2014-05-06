@@ -3,17 +3,19 @@
 }
 
 #mainMenu{
-	width: 100% !important;
+	width: 75%;
+	
 }
 
 #loginPanel {
-	width:30% !importatnt;
-	float:right !important;
-	margin: 0 auto !important;
+
 }
 .ui-datatable.borderless thead th,
 .ui-datatable.borderless tbody,
 .ui-datatable.borderless tbody tr,
 .ui-datatable.borderless tbody td {
     border-style: none;
+}
+.ui-growl{
+	top:70px !important;
 }
