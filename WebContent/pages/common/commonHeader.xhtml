@@ -9,41 +9,48 @@
 	<h:outputStylesheet name="default.css" library="css" />
 </h:head>
 <body>
-	<div style="float: right;" >
-		<h:form id="langForm">
-		<h:panelGrid columns="3" >
-		Hello, #{userBean.currUser.login}
-			<p:commandButton value="Sigh out" ajax="false"
-				style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
-				action="#{userBean.logout()}" />
-			<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
+	<h:form id="menu">
 
-				<f:selectItems value="#{userLanguage.countries}" var="country"
-					itemLabel="#{country}" />
-				<p:ajax process=":langForm:selectone" update="@all" />
-			</p:selectOneMenu>
-		</h:panelGrid>
-		</h:form>
+		<p:growl id="messages" />
 
-	</div>
-
-
-	<div id="mainMenu">
-		<p:tabMenu activeIndex="#{index}">
-			<p:menuitem value="Catalog"
+		
+		<p:menubar>
+			<p:menuitem value="Catalog" 
 				url="/faces/pages/reader/indexReader.xhtml" />
 			<p:menuitem value="Order"
 				url="/faces/pages/reader/orderListReader.xhtml" />
 			<p:menuitem value="Documentation" url="/ui/tabMenuDocumentation.jsf" />
 			<p:menuitem value="Support" url="/ui/tabMenuSupport.jsf" />
-			<p:menuitem style="float:right" value="Social" url="/ui/tabMenuSocial.jsf" />
-			
-					
+			<p:menuitem style="float:right" value="Social"
+				url="/ui/tabMenuSocial.jsf" />
 
-		</p:tabMenu>
-	</div>
-	<p:graphicImage value="/resources/images/books.jpeg" alt="left"
-		height="100" width="425" />
+			<f:facet name="options">
+				<h:panelGrid columns="3">
+		Hello, #{userBean.currUser.login}
+			<p:commandButton value="Sigh out" ajax="false"
+						style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
+						action="#{userBean.logout()}" />
+					<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
+
+						<f:selectItems value="#{userLanguage.countries}" var="country"
+							itemLabel="#{country}" />
+						<p:ajax process=":menu:selectone" update="@all" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+			</f:facet>
+
+		</p:menubar>
+
+
+
+
+	</h:form>
+
+<br/><br/>
+	<h:panelGrid columns="2">
+				<p:graphicImage value="/resources/images/books.jpeg" alt="left"/>
+				<p:graphicImage value="#{picture}"  />
+				</h:panelGrid>
 
 
 </body>

@@ -8,27 +8,55 @@
 
 <f:view locale="#{userLanguage.locale}" />
 
-<h:head></h:head>
+<h:head>
+	<h:outputStylesheet name="default.css" library="css" />
+</h:head>
 <h:body>
-<form method="post" action="j_security_check">
-		Login: <input type="text" name="j_username" /> <br/>
-		Password: <input type="password" name="j_password" /><br/>
-		<input type="submit" value="Go!!!" /> 
-	</form>
-	<h:outputText value="#{texts.helloWorld}" />
-	<h:form id="langForm">
-		<h:panelGrid columns="2">
-         #{texts.Language}:
-         <p:selectOneMenu value="#{userLanguage.language}"
-				id="selectone">
 
-				<f:selectItems value="#{userLanguage.countries}" var="country"
-					itemLabel="#{country}" />
-				<p:ajax process=":langForm:selectone" update="@all" />
-			</p:selectOneMenu>
-		</h:panelGrid>
+	<h:form id="menu">
+
+		<p:growl id="messages" />
+
+		
+		<p:menubar>
+			<p:menuitem value="Catalog"
+				url="/faces/pages/reader/indexReader.xhtml" />
+			<p:menuitem value="Order"
+				url="/faces/pages/reader/orderListReader.xhtml" />
+			<p:menuitem value="Documentation" url="/ui/tabMenuDocumentation.jsf" />
+			<p:menuitem value="Support" url="/ui/tabMenuSupport.jsf" />
+			<p:menuitem style="float:right" value="Social"
+				url="/ui/tabMenuSocial.jsf" />
+
+			<f:facet name="options">
+				<h:panelGrid columns="3">
+		Hello, #{userBean.currUser.login}
+			<p:commandButton value="Sigh out" ajax="false"
+						style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
+						action="#{userBean.logout()}" />
+					<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
+
+						<f:selectItems value="#{userLanguage.countries}" var="country"
+							itemLabel="#{country}" />
+						<p:ajax process=":menu:selectone" update="@all" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+			</f:facet>
+
+		</p:menubar>
+
+
+
 
 	</h:form>
+
+
+
+
+
+
+
+
 
 
 </h:body>

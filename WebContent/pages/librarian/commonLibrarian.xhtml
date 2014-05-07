@@ -19,19 +19,23 @@
 		<div id="header">
 			<ui:insert name="header">
 				<ui:include src="/pages/common/commonHeader.xhtml" />
+				<ui:param name="index" value="#{currIndex}" />
 			</ui:insert>
 		</div>
-<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:growl id="growl" showDetail="true" sticky="true" />
 		<div id="content">
 			<ui:insert name="content">
-				<!-- 				<ui:include src="/template/common/commonContent.xhtml" /> -->
 			</ui:insert>
 		</div>
 
 		<div id="footer">
 			<ui:insert name="footer">
-
-				<ui:include src="/pages/common/commonFooter.xhtml" />
+				<br />
+				<br />
+				<hr style="border-top: 1px solid #E6E6E6;"></hr>
+				<p align="right" style="font-size: 12">
+					Project Library <br /> Created by Kozlov Dmytro
+				</p>
 			</ui:insert>
 		</div>
 
@@ -39,4 +43,3 @@
 
 </h:body>
 </html>
-

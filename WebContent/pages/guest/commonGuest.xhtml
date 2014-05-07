@@ -5,10 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<f:loadBundle basename="com.kozlov.library.resources.texts" var="msg" />
+
 <f:view locale="#{userLanguage.locale}" />
 <h:head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
 
 	<h:outputStylesheet name="default.css" library="css" />
 
@@ -16,72 +16,61 @@
 
 <h:body>
 
-	<div id="page">
 
-		<div id="header">
-			<ui:insert name="header">
-				<div>
-					<p:tabMenu activeIndex="0">
-						<p:menuitem value="Catalog" url="/ui/tabMenu.jsf"
-							icon="ui-icon-star" />
-						<p:menuitem value="Demos" url="/ui/tabMenuDemos.jsf"
-							icon="ui-icon-search" />
-						<p:menuitem value="Documentation"
-							url="/ui/tabMenuDocumentation.jsf" icon="ui-icon-document" />
-						<p:menuitem value="Support" url="/ui/tabMenuSupport.jsf"
-							icon="ui-icon-wrench" />
-						<p:menuitem value="Social" url="/ui/tabMenuSocial.jsf"
-							icon="ui-icon-person" />
-						<div id="loginPanel">
-							<p:menuitem>
-								<p:panelGrid columns="3">
-									<h:form>
-										<h:outputLabel for="login" value="#{texts.Login}: "
-											style="font-weight:bold" />
-										<p:inputText name="j_username" id="login"
-											value="#{userBean.currUser.login}" label="Login" />
-										<h:outputLabel for="password" value="#{texts.Password}: "
-											style="font-weight:bold" />
-										<p:inputText name="j_password" type="password" id="password"
-											value="#{userBean.currUser.pass}" label="Password" />
-										<p:commandButton value="Sigh in" ajax="false"
-											style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
-											action="#{userBean.login}" />
-									</h:form>
-								</p:panelGrid>
-							</p:menuitem>
-							<p:menuitem>
-								<h:form id="langForm">
-									<p:selectOneMenu value="#{userLanguage.language}"
-										id="selectone">
-										<f:selectItems value="#{userLanguage.countries}" var="country"
-											itemLabel="#{country}" />
-										<p:ajax process=":langForm:selectone" update="@all" />
-									</p:selectOneMenu>
-								</h:form>
-							</p:menuitem>
-						</div>
-					</p:tabMenu>
-					<p:graphicImage value="/resources/images/books.jpeg" alt="left"
-						height="100" width="425" />
-				</div>
-			</ui:insert>
-		</div>
-<p:growl id="growl" showDetail="true" sticky="true" />
-		<div id="content">
-			<ui:insert name="content">
-				<!-- 				<ui:include src="/template/common/commonContent.xhtml" /> -->
-			</ui:insert>
-		</div>
+	<ui:insert name="header">
+		<h:form id="menu">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:menubar>
+				<f:facet name="options">
+					<h:panelGrid columns="6">
+						<h:outputLabel for="login" value="#{texts.Login}: "
+							style="font-weight:bold" />
+						<p:inputText name="j_username" id="login"
+							value="#{userBean.currUser.login}" label="Login" />
+						<h:outputLabel for="password" value="#{texts.Password}: "
+							style="font-weight:bold" />
+						<p:inputText name="j_password" type="password" id="password"
+							value="#{userBean.currUser.pass}" label="Password" />
+						<p:commandButton value="Sigh in" ajax="false"
+							style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
+							action="#{userBean.login}" />
+						<p:selectOneMenu value="#{userLanguage.language}" id="selectone">
 
-		<div id="footer">
-			<ui:insert name="footer">
+							<f:selectItems value="#{userLanguage.countries}" var="country"
+								itemLabel="#{country}" />
+							<p:ajax process=":menu:selectone" update="@all" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</f:facet>
+			</p:menubar>
+		</h:form>
+		<br />
+		<br />
+		<h:panelGrid columns="2">
+			<p:graphicImage value="/resources/images/books.jpeg" alt="left"
+				height="100" width="425" />
+			<p:graphicImage value="/resources/images/join.png" />
+		</h:panelGrid>
+	</ui:insert>
 
-				<ui:include src="/pages/common/commonFooter.xhtml" />
-			</ui:insert>
-		</div>
 
-	</div>
+
+	<ui:insert name="content">
+
+	</ui:insert>
+
+
+
+	<ui:insert name="footer">
+
+		<br/>
+<br/>
+<hr style="border-top: 1px solid #E6E6E6;"></hr>
+<p align="right" style="font-size:12">Project Library <br/> Created by Kozlov Dmytro</p>
+	</ui:insert>
+
+
+
 
 </h:body>
 </html>
