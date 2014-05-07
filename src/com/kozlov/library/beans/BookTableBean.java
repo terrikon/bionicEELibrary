@@ -1,24 +1,18 @@
 package com.kozlov.library.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
-
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.print.attribute.standard.Chromaticity;
-
 import com.kozlov.library.dao.BookDao;
 import com.kozlov.library.dao.OrderItemDao;
 import com.kozlov.library.enteties.Book;
 
-@Named
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class BookTableBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
