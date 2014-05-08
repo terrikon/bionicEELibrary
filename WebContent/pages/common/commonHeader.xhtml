@@ -11,7 +11,7 @@
 <body>
 	<h:form id="menu">
 
-		<p:growl id="messages" />
+		<p:growl id="growl" showDetail="true" sticky="true" />
 
 		
 		<p:menubar>
@@ -32,7 +32,7 @@
 
 			<f:facet name="options">
 				<h:panelGrid columns="3">
-		Hello, #{userBean.currUser.login}
+		Hello, #{userBean.currUser.name}
 			<p:commandButton value="Sigh out" ajax="false"
 						style="margin-left:10px; background: #008bcb;border-color: #017eb8; color:#fff "
 						action="#{userBean.logout()}" />

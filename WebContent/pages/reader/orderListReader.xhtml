@@ -60,7 +60,7 @@
 					<div id="rightPart" 
 						style="width: 49%;background:#F9F9F9; height: 100%; float: right; position: relative;">
 						<p:dataTable styleClass="borderless" var="order"
-							value="#{orderTableBean.orders}" rowKey="#{order}"
+							value="#{orderTableBean.ordersForUser}" rowKey="#{order}"
 							widgetVar="booksTable" selection="#{bookTableBean.selectedBook}"
 							selectionMode="single"
 							 id="ordersTable"
@@ -90,9 +90,6 @@
 
 					</div>
 				</div>
-
-
-
 				<p:dialog header="Book Detail" widgetVar="bookDialog"
 					resizable="false" width="300" showEffect="explode"
 					hideEffect="explode">
@@ -117,6 +114,7 @@
 
 			</h:form>
 		</ui:define>
+		
 	</ui:composition>
 </body>
 </html>

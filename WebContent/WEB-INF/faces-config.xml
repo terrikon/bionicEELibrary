@@ -7,7 +7,11 @@
   <navigation-case>
    <from-outcome>indexReader</from-outcome>
    <to-view-id>/pages/reader/indexReader.xhtml</to-view-id>
-<!--    <redirect /> -->
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>indexLibrarian</from-outcome>
+   <to-view-id>/pages/librarian/indexLibrarian.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
  </navigation-rule>
  <application>

@@ -19,7 +19,7 @@
 					filteredValue="#{bookTableBean.filteredBooks}" id="booksTable"
 					emptyMessage="No books found with given criteria">
 
-					<p:ajax event="rowSelect" update=":form:display"
+					<p:ajax event="rowDblselect" update=":form:display"
 						oncomplete="bookDialog.show()" />
 
 					<f:facet name="header">

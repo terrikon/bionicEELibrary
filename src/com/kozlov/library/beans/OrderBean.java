@@ -1,6 +1,7 @@
 package com.kozlov.library.beans;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +16,7 @@ import com.kozlov.library.enteties.OrderItem;
 import java.io.Serializable;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class OrderBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,12 +42,6 @@ public class OrderBean implements Serializable {
 		this.currOrder = currOrder;
 	}
 
-	public void addBookToOrder(String stringBookId) {
-		int bookId = Integer.parseInt(stringBookId);
-		Book book = bookDao.read(bookId);
-		OrderItem orderItem = new OrderItem();
-		orderItem.setBook(book);
-		currOrder.getOrderItems().add(orderItem);
-	}
+	
 	
 	}

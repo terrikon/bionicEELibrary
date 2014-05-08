@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:of="http://omnifaces.org/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head></h:head>
@@ -10,7 +11,68 @@
 	<ui:composition template="commonLibrarian.xhtml">
 		<ui:param name="picture" value="/resources/images/catalog.png" />
 		<ui:define name="content">
-		
+			<h:form id="form">
+				<p:dataTable styleClass="borderless" var="order"
+					value="#{orderTableBean.allOrders}" rowKey="#{order.orderId}"
+					widgetVar="ordersTable" selection="#{orderTableBean.selectedOrder}"
+					selectionMode="single" id="ordersTable"
+					emptyMessage="There is no active orders">
+
+					<p:ajax event="rowDblselect" update=":form:orderItems"
+						oncomplete="orderDialog.show()" />
+
+					<f:facet name="header">
+						<p:outputPanel>
+							<div align="left">
+								<h:outputText value="Orders to process" />
+
+							</div>
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="#{texts.UserName}" sortBy="userName"
+						id="userName">						
+            			#{order.user.name}
+					</p:column>
+					<p:column headerText="#{texts.UserSurname}" sortBy="userSurname"
+						id="userSurname">						
+            			#{order.user.surname}
+					</p:column>
+					<p:column headerText="#{texts.OrderDate}" sortBy="date" id="date">						
+            			#{order.date}
+					</p:column>
+					<p:column headerText="#{texts.OrderStatus}" sortBy="status"
+						id="status">
+						#{order.orderStatus.status}
+							</p:column>
+				</p:dataTable>
+
+
+				<p:dialog header="Order Details" widgetVar="orderDialog"
+					resizable="false" width="auto">
+					<p:dataTable id="orderItems" styleClass="borderless"
+						var="orderItem"
+						value="#{of:setToList(orderTableBean.selectedOrder.orderItems)}">
+						<p:column headerText="#{texts.Title}">						
+            			#{orderItem.book.title}
+					</p:column>
+						<p:column headerText="#{texts.GiveTo}">
+							<p:selectOneMenu value="#{orderItem.location}"
+								converter="#{locationConverter}">
+								<f:selectItems value="#{locationBean.locations}" var="location"
+									itemLabel="#{location.place}" />
+							</p:selectOneMenu>
+
+						</p:column>
+					</p:dataTable>
+					<p:commandButton value="Save changes" ajax="false"
+						style="width: auto; height: 27px; background: #008bcb;border-color: #017eb8; color:#fff "
+						action="#{orderTableBean.saveOrderItemsLocations}">
+					</p:commandButton>
+				</p:dialog>
+
+
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>

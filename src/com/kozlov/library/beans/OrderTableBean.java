@@ -20,13 +20,15 @@ public class OrderTableBean {
 
 	private List<Order> filteredOrders;
 
-	private List<Order> orders;
+	private List<Order> ordersForUser;
+	private List<Order> allOrders;
 
 	private Order selectedOrder;
 
 	@PostConstruct
-	public void setOrders() {
-		orders = orderdao.find(user.getCurrUser().getLogin());
+	public void init() {
+		ordersForUser = orderdao.find(user.getCurrUser().getLogin());
+		allOrders = orderdao.findAll();
 	}
 
 	public Order getSelectedOrder() {
@@ -45,8 +47,12 @@ public class OrderTableBean {
 		this.filteredOrders = filteredOrders;
 	}
 
-	public List<Order> getOrders() {
-		orders = orderdao.find(user.getCurrUser().getLogin());
-		return orders;
+	public List<Order> getOrdersForUser() {
+		ordersForUser = orderdao.find(user.getCurrUser().getLogin());
+		return ordersForUser;
+	}
+	
+	public List<Order> getAllOrders(){
+		return allOrders;
 	}
 }

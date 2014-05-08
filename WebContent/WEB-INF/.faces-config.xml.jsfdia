@@ -8,9 +8,17 @@
     ID="indexReader::#pages#reader#indexReader.xhtml" NAME="output"
     PATH="/pages/reader/indexReader.xhtml"
     TARGET="rules:#pages#reader#indexReader.xhtml" TITLE="indexReader" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="indexLibrarian::#pages#librarian#indexLibrarian.xhtml"
+    NAME="output1" PATH="/pages/librarian/indexLibrarian.xhtml"
+    TARGET="rules:#pages#librarian#indexLibrarian.xhtml"
+    TITLE="indexLibrarian" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#reader#indexReader.xhtml"
   PATH="/pages/reader/indexReader.xhtml" SHAPE="296,48,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#librarian#indexLibrarian.xhtml"
+  PATH="/pages/librarian/indexLibrarian.xhtml" SHAPE="304,176,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>
